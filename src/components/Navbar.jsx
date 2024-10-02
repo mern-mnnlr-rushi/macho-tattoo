@@ -7,7 +7,7 @@ export const Navbar = () => {
 
   return (
     <div>
-      <header className="text-gray-600 body-font bg-slate-100">
+      <header className="text-gray-600 body-font bg-slate-100 items-center justify-center">
         <div className="container mx-auto flex flex-wrap p-5 flex-row md:flex-row items-center justify-between">
           {/* Logo Section */}
           <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -100,7 +100,7 @@ export const Navbar = () => {
           {/* Action Button - Triggers Sidebar */}
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="md:hidden inline-flex items-center bg-gray-100 border-0 py-2 px-4 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 transition duration-300 ease-in-out"
+            className="md:hidden inline-flex items-center bg-gray-100 border-0 py-4 px-4 focus:outline-none hover:bg-gray-200 rounded-full text-base md:mt-0 transition duration-300 ease-in-out"
           >
             <svg
               className="w-6 h-6"
