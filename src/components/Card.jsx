@@ -7,14 +7,15 @@ export const Card = ({
     btnLink,
     whatsappLink,
     callLink,
-    bgColor,
+    style
 }) => {
     return (
         <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-wrap -m-4">
-                <div className="p-4 lg:w-1/3">
+                <div className="p-4 lg:w-1/3 ">
                     <div
-                        className={`${bgColor} h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10`}
+                        // className={`${bgColor} h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10`}
+                        className={`${style}`}
                     >
                         <h1 className="title-font sm:text-2xl text-xl font-semibold text-gray-900 mb-3">
                             {title}{" "}
@@ -24,7 +25,7 @@ export const Card = ({
                         <div className="flex flex-row mt-10">
                             <button
                                 href={btnLink}
-                                className="bg-black px-4 py-2 rounded-md text-white inline-flex items-center"
+                                className={`bg-black px-4 py-2 rounded-md text-white inline-flex items-center`}
                             >
                                 Learn More
                                 <svg

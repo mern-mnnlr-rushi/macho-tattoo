@@ -7,7 +7,7 @@ export const NavFoot = () => {
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
-      <div className="flex-grow">
+      <div className="flex-grow bg-slate-100">
         <Outlet />
       </div>
       <Footer />
