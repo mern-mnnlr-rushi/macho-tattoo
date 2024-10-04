@@ -3,11 +3,12 @@ import React from "react";
 export const Card = ({
     title,
     titleBold,
+    subText,
     body,
     btnLink,
     whatsappLink,
     callLink,
-    style
+    style,
 }) => {
     return (
         <div className="container px-5 py-24 mx-auto">
@@ -17,10 +18,13 @@ export const Card = ({
                         // className={`${bgColor} h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10`}
                         className={`${style}`}
                     >
-                        <h1 className="title-font sm:text-2xl text-xl font-semibold text-gray-900 mb-3">
+                        <h1 className="title-font sm:text-3xl text-xl font-semibold text-gray-900 mb-3">
                             {title}{" "}
                             <span className="font-bold">{titleBold}</span>
                         </h1>
+                        <h2 className="title-font sm:text-2xl text-xl font-normal text-gray-900 mb-3">
+                            {subText}
+                        </h2>
                         <p className="leading-relaxed mt-10">{body}</p>
                         <div className="flex flex-row mt-10">
                             <button
