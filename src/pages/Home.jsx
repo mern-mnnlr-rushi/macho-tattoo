@@ -1,18 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Card } from "../components/Card";
+import React, { useState } from "react";
 import { CardSlider } from "../components/CardSlider";
+import { ImgAndCard } from "../components/ImgAndCard";
+import { FixImg_Card_CardSlider } from "../components/FixImg_Card_CardSlider";
+import { DualImage_CardSlider } from "../components/DualImage_CardSlider";
+import { ImgWithText_FixImg } from "../components/ImgWithText_FixImg";
+import { TextOnImg } from "../components/TextOnImg";
+import { Link } from "react-router-dom";
+import { ImgAndCard_CardSlider } from "../components/ImgAndCard_CardSlider";
+import { FixImg_Card } from "../components/FixImg_Card";
 
 export const Home = () => {
-    const [location, setLocation] = useState("");
+    const [location, setLocation] = useState("none"); // Default value for the dropdown
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const handleLocationChange = (e) => {
         const selectedLocation = e.target.value;
         setLocation(selectedLocation);
-        if (selectedLocation) {
-            setIsSidebarOpen(true); // Open sidebar when a location is selected
-        } else {
-            setIsSidebarOpen(false); // Close sidebar if no location is selected
+        if (selectedLocation !== "none") {
+            setIsSidebarOpen(true); // Open the sidebar when a location is selected
         }
     };
 
@@ -342,51 +347,38 @@ export const Home = () => {
     return (
         <>
             <section className="relative">
-                <img
-                    className="w-full h-[700px] px-14 object-cover bg-fixed z-0"
-                    src="https://media.istockphoto.com/id/492258714/photo/expert-tattooing-female-customers-lap.jpg?s=612x612&w=0&k=20&c=QRsMP2kkfa9y673NXjh6aM5bZRYSjz0z8ZbhbB_Yab0="
-                    alt="image"
+                <ImgAndCard
+                    img={
+                        "https://media.istockphoto.com/id/492258714/photo/expert-tattooing-female-customers-lap.jpg?s=612x612&w=0&k=20&c=QRsMP2kkfa9y673NXjh6aM5bZRYSjz0z8ZbhbB_Yab0="
+                    }
+                    cardStyle="bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
+                    cardTitle={"Raclette Blueberry"}
+                    cardTitleBold={"Tattoo Studio"}
+                    cardBody={
+                        "Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat."
+                    }
+                    cardBtnLink={"#"}
+                    cardWhatsappLink={"#"}
+                    cardCallLink={"#"}
                 />
-                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                    <Card
-                        style="bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
-                        title={"Raclette Blueberry"}
-                        titleBold={"Tattoo Studio"}
-                        body={
-                            "Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat."
-                        }
-                        btnLink={"#"}
-                        whatsappLink={"#"}
-                        callLink={"#"}
-                    />
-                </div>
             </section>
 
             <section className="relative px-14 mt-14">
-                <div
-                    className="bg-fixed bg-cover bg-center h-[900px]"
-                    style={{
-                        backgroundImage:
-                            'url("https://cdn.pixabay.com/photo/2017/08/11/21/00/tattoo-2632711_640.jpg")',
-                    }}
-                >
-                    <div className="bg-black bg-opacity-10 h-full flex items-center">
-                        <Card
-                            style="bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
-                            title={"Raclette Blueberry"}
-                            titleBold={"Tattoo Studio"}
-                            body={
-                                "Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat."
-                            }
-                            btnLink={"#"}
-                            whatsappLink={"#"}
-                            callLink={"#"}
-                        />
-                    </div>
-                </div>
-                <div className="mx-auto py-1">
-                    <CardSlider cardData={ShowcaseCardData} />
-                </div>
+                <FixImg_Card_CardSlider
+                    fixImg={
+                        "https://imgs.search.brave.com/PZVn1hbkXcjSDSyGJKqHOMR16pFUOVsM8g2y7uMu8n0/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMud2l4c3RhdGlj/LmNvbS9tZWRpYS9m/NzMyNTBfNGM2Y2Fl/Mzk2YWMxNDNjOThj/NzZlNmMyYTFkM2Y4/NDF-bXYyLndlYnAv/djEvZmlsbC93XzQ4/MCxoXzM2MCxmcF8w/LjVfMC41NyxxXzkw/L2Y3MzI1MF80YzZj/YWUzOTZhYzE0M2M5/OGM3NmU2YzJhMWQz/Zjg0MX5tdjIud2Vi/cA"
+                    }
+                    cardStyle="bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
+                    cardTitle={"Raclette Blueberry"}
+                    cardTitleBold={"Tattoo Studio"}
+                    cardBody={
+                        "Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat."
+                    }
+                    cardBtnLink={"#"}
+                    cardWhatsappLink={"#"}
+                    cardCallLink={"#"}
+                    cardSliderData={ShowcaseCardData}
+                />
             </section>
 
             <section className="relative px-14 mt-14">
@@ -408,108 +400,59 @@ export const Home = () => {
             </section>
 
             <section className="relative px-14 mt-14">
-                <div className="flex flex-col md:flex-row items-stretch justify-between">
-                    <div className="w-full md:w-1/2 h-[800px] relative flex items-center justify-center mr-1">
-                        <img
-                            className="w-full h-full object-cover"
-                            src="https://plus.unsplash.com/premium_photo-1707327144389-e7151b0dd08c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGFydCUyMHRhdHRvbyUyMGdpcmx8ZW58MHx8MHx8fDA%3D"
-                            alt="Raclette Blueberry"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="absolute inset-0 bg-black opacity-10" />{" "}
-                            {/* Dim black overlay */}
-                            <div className="relative z-10 text-center text-white p-5">
-                                <h1 className="text-4xl font-bold mb-4">
-                                    Let’s bring{" "}
-                                    <span className="text-black">your</span>{" "}
-                                    vision to life
-                                </h1>
-                                <h2 className="text-2xl mb-4">
-                                    Tattoo Design Service by Aliens
-                                </h2>
-                                <p className="mb-6">
-                                    Aliens Tattoo crafts your personalized
-                                    design, setting no limits on where you bring
-                                    it to life. Receive a bespoke masterpiece
-                                    from us, ready for inking by any artist,
-                                    anywhere in the world.
-                                </p>
-                                <button className="bg-black text-white px-6 py-2 rounded">
-                                    Book an Appointment
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="w-full md:w-1/2 h-[800px] relative">
-                        <img
-                            className="w-full h-full object-cover"
-                            src="https://plus.unsplash.com/premium_photo-1707057704991-1f0cec6e9a3f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXJ0JTIwdGF0dG9vJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D"
-                            alt="Artistic Tattoo"
-                        />
-                    </div>
-                </div>
-                <CardSlider cardData={ServiceCardData} />
+                <DualImage_CardSlider
+                    img1={
+                        "https://plus.unsplash.com/premium_photo-1707327144389-e7151b0dd08c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGFydCUyMHRhdHRvbyUyMGdpcmx8ZW58MHx8MHx8fDA%3D"
+                    }
+                    img2={
+                        "https://plus.unsplash.com/premium_photo-1707057704991-1f0cec6e9a3f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXJ0JTIwdGF0dG9vJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D"
+                    }
+                    titleStart={"Let’s bring"}
+                    titleBoldCenter={"your"}
+                    titleEnd={"vision to life"}
+                    subTitle={"Tattoo Design Service by Aliens"}
+                    bodyText={
+                        "Aliens Tattoo crafts your personalized design, setting no limits on where you bring it to life. Receive a bespoke masterpiece from us, ready for inking by any artist, anywhere in the world."
+                    }
+                    btnText={"Book an Appointment"}
+                    btnLink={"#"}
+                    cardSliderData={ServiceCardData}
+                />
             </section>
 
             <section className="relative px-14 mt-14">
-                <div className="flex flex-col md:flex-row items-stretch justify-between">
-                    <div className="w-full md:w-1/2 h-[700px] relative flex items-center justify-center mr-1">
-                        <img
-                            className="w-full h-full object-cover"
-                            src="https://plus.unsplash.com/premium_photo-1708126176305-b8edcffd0525?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODl8fGFydCUyMHRhdHRvbyUyMGdpcmx8ZW58MHx8MHx8fDA%3D"
-                            alt="Raclette Blueberry"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="absolute inset-0 bg-black opacity-10" />{" "}
-                            {/* Dim black overlay */}
-                            <div className="relative z-10 text-center text-white p-5">
-                                <h1 className="text-4xl font-bold mb-2">
-                                    Express Yourself
-                                </h1>
-                                <h2 className="text-xl mb-5">
-                                    Piercings by Client
-                                </h2>
-                                <p className="mb-6 px-10">
-                                    Aliens offers expert piercing services that
-                                    blend safety with style, ensuring each piece
-                                    not only enhances your look but also
-                                    expresses your unique identity.
-                                </p>
-                                <button className="bg-black text-white px-6 py-2 rounded">
-                                    Book an Appointment
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        className="bg-fixed bg-cover bg-center w-full md:w-1/2 h-[700px] relative"
-                        style={{
-                            backgroundImage:
-                                'url("https://plus.unsplash.com/premium_photo-1698046366833-6591925f51ee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjA5fHxhcnQlMjB0YXR0b28lMjBnaXJsfGVufDB8fDB8fHww")',
-                        }}
-                    ></div>
-                </div>
+                <ImgWithText_FixImg
+                    img1={
+                        "https://plus.unsplash.com/premium_photo-1708126176305-b8edcffd0525?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODl8fGFydCUyMHRhdHRvbyUyMGdpcmx8ZW58MHx8MHx8fDA%3D"
+                    }
+                    img2={
+                        "https://plus.unsplash.com/premium_photo-1698046366833-6591925f51ee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjA5fHxhcnQlMjB0YXR0b28lMjBnaXJsfGVufDB8fDB8fHww"
+                    }
+                    titleText={"Express Yourself"}
+                    subTitleText={"Piercings by Client"}
+                    bodyText={
+                        "Aliens offers expert piercing services that blend safety with style, ensuring each piece not only enhances your look but also expresses your unique identity."
+                    }
+                    btnText={"Book an Appointment"}
+                    btnLink={"#"}
+                />
             </section>
 
             <section className="relative mt-10">
-                <img
-                    className="w-full h-[700px] px-14 object-cover bg-fixed z-0"
-                    src="https://images.unsplash.com/photo-1623118176012-9b0c6fa0712d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGRvbGxhciUyMGFydHxlbnwwfHwwfHx8MA%3D%3D"
-                    alt="image"
+                <ImgAndCard
+                    img={
+                        "https://images.unsplash.com/photo-1623118176012-9b0c6fa0712d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGRvbGxhciUyMGFydHxlbnwwfHwwfHx8MA%3D%3D"
+                    }
+                    cardStyle="bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
+                    cardTitle={"Tattoo Now"}
+                    cardTitleBold={"Pay Later"}
+                    cardBody={
+                        "You can now choose to pay later in easy monthly instalments through our Aliens Payment Plans. No Charges,No Interest,Instant Approvals."
+                    }
+                    cardBtnLink={"#"}
+                    cardWhatsappLink={"#"}
+                    cardCallLink={"#"}
                 />
-                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                    <Card
-                        style="bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
-                        title={"Tattoo Now"}
-                        titleBold={"Pay Later"}
-                        body={
-                            "You can now choose to pay later in easy monthly instalments through our Aliens Payment Plans. No Charges,No Interest,Instant Approvals."
-                        }
-                        btnLink={"#"}
-                        whatsappLink={"#"}
-                        callLink={"#"}
-                    />
-                </div>
             </section>
 
             <section className="relative mt-10 px-14">
@@ -522,77 +465,61 @@ export const Home = () => {
                         <div className="absolute inset-0 bg-black opacity-10" />{" "}
                         {/* Dim black overlay */}
                         <div className="relative z-10 text-center text-white p-5">
-                            <h1 className="text-4xl font-bold mb-2">
+                            <h1 className="text-5xl font-bold mb-2">
                                 Your art is secured for life, thats our promise!
                             </h1>
-                            <h2 className="text-xl mb-5">
+                            <h2 className="text-lg mb-10 text-green-400">
                                 Life time tattoo protection.
                             </h2>
-                            <p className="mb-6 px-10">
+                            <p className="mb-10 px-44 text-2xl">
                                 Aliens offers expert piercing services that
                                 blend safety with style, ensuring each piece not
                                 only enhances your look but also expresses your
                                 unique identity.
                             </p>
-                            <button className="bg-black text-white px-6 py-2 rounded">
+                            <Link
+                                to="#"
+                                className="text-center bg-black text-sm text-white px-6 py-3 rounded-lg transform hover:text-base font-bold duration-300 ease-in-out"
+                            >
                                 Book an Appointment
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section className="relative mt-10 px-14">
-                <div className="w-full md:w-full h-[700px] relative flex items-center justify-center">
-                    <img
-                        className="w-full h-full object-cover"
-                        src="https://images.unsplash.com/photo-1530099486328-e021101a494a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTl8fHRlYW0lMjBncm91cHxlbnwwfHwwfHx8MA%3D%3D"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <Card
-                            style="bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
-                            title={"Masters of"}
-                            titleBold={"Ink"}
-                            subText={"Not just Artists, but storytellers"}
-                            body={
-                                "At the heart of Aliens Tattoo, our world-class artists are maestros of ink who create award-winning art that speaks volumes. Being renowned storytellers, our creativity and skills are unmatched, making us leaders in the tattoo industry."
-                            }
-                            btnLink={"#"}
-                            whatsappLink={"#"}
-                            callLink={"#"}
-                        />
-                    </div>
-                </div>
-                <div className="mx-auto py-1">
-                    <CardSlider cardData={MastersCardData} />
-                </div>
+                <ImgAndCard_CardSlider
+                    img={
+                        "https://images.unsplash.com/photo-1530099486328-e021101a494a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTl8fHRlYW0lMjBncm91cHxlbnwwfHwwfHx8MA%3D%3D"
+                    }
+                    cardStyle={
+                        "bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
+                    }
+                    titleText={"Masters of"}
+                    boldText={"Ink"}
+                    subText={"Not just Artists, but storytellers"}
+                    bodyText={
+                        "At the heart of Aliens Tattoo, our world-class artists are maestros of ink who create award-winning art that speaks volumes. Being renowned storytellers, our creativity and skills are unmatched, making us leaders in the tattoo industry."
+                    }
+                    btnLink={"#"}
+                    wantsappLink={"#"}
+                    callLink={"#"}
+                    cardSliderData={MastersCardData}
+                />
             </section>
 
             <section className="relative mt-10 px-14">
-                <div className="w-full md:w-full h-[950px] relative flex items-center justify-center mr-1">
-                    <img
-                        className="w-full h-full object-cover"
-                        src="https://cdn.pixabay.com/photo/2020/10/17/15/55/coins-5662551_640.jpg"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="absolute inset-0 bg-black opacity-10" />{" "}
-                        {/* Dim black overlay */}
-                        <div className="relative z-10 text-center text-white p-5">
-                            <h2 className="text-8xl font-bold mb-2">
-                                Your Rewards
-                            </h2>
-                            <h2 className="text-teal-400 text-lg font-mono mb-5">
-                                Offers & Discounts
-                            </h2>
-                            <p className="text-7xl mb-6 px-10">
-                                You loyalty rewarded gracefully!
-                            </p>
-                            <button className="bg-black text-white px-6 py-2 rounded">
-                                Explore Rewards
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <TextOnImg
+                    img={
+                        "https://cdn.pixabay.com/photo/2020/10/17/15/55/coins-5662551_640.jpg"
+                    }
+                    titleText={"Your Rewards"}
+                    subTitleTextColored={"Offers & Discounts"}
+                    bodyText={"You loyalty rewarded gracefully!"}
+                    btnText={"Explore Rewards"}
+                    btnLink={"#"}
+                />
             </section>
 
             <section className="relative mt-10 px-14">
@@ -600,40 +527,35 @@ export const Home = () => {
             </section>
 
             <section className="relative mt-10 px-14">
-                <div
-                    className="bg-fixed bg-cover bg-center h-[900px]"
-                    style={{
-                        backgroundImage:
-                            'url("https://imgs.search.brave.com/RMJCKC_11CF08tzW72O2-OByycEcJZCEsMarVihb2mU/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQw/MTU1NzI0Ny9waG90/by9zdWNjZXNzZnVs/LXBhcnRuZXJzaGlw/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1kdW9PZTUwM1Va/RUN3M2ZockNJeUlu/aFAxRkgwWVJwQ1N2/eVJ1NlVHNVlBPQ")',
-                    }}
-                >
-                    <div className="bg-black bg-opacity-10 h-full flex items-center">
-                        <Card
-                            style="bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
-                            titleBold={"Alliance of Artistry"}
-                            subText={"Partnering with the World Leaders"}
-                            body={
-                                "Through strategic collaborations with leading global brands, Aliens Tattoo elevates the intersection of art and commerce, blending tattoo artistry with iconic brand narratives to create unique cultural expressions."
-                            }
-                            btnLink={"#"}
-                            whatsappLink={"#"}
-                            callLink={"#"}
-                        />
-                    </div>
-                </div>
+                <FixImg_Card
+                    img={
+                        "https://imgs.search.brave.com/RMJCKC_11CF08tzW72O2-OByycEcJZCEsMarVihb2mU/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQw/MTU1NzI0Ny9waG90/by9zdWNjZXNzZnVs/LXBhcnRuZXJzaGlw/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1kdW9PZTUwM1Va/RUN3M2ZockNJeUlu/aFAxRkgwWVJwQ1N2/eVJ1NlVHNVlBPQ"
+                    }
+                    cardStyle={
+                        "bg-white h-full bg-opacity-75 px-9 py-20 rounded-lg overflow-hidden text-start relative z-10"
+                    }
+                    titleTextBold={"Alliance of Artistry"}
+                    subText={"Partnering with the World Leaders"}
+                    bodyText={
+                        "Through strategic collaborations with leading global brands, Aliens Tattoo elevates the intersection of art and commerce, blending tattoo artistry with iconic brand narratives to create unique cultural expressions."
+                    }
+                    btnLink={"#"}
+                    whatsappLink={"#"}
+                    callLink={"#"}
+                />
             </section>
 
             <section className="relative mt-10 px-14">
                 <div className="flex flex-col items-center justify-center">
                     <h1 className="text-5xl mb-5">
-                        Aliens are <span className="font-bold">Everywhere</span>
+                        We are <span className="font-bold">Everywhere</span>
                     </h1>
                     <p className="text-lg font-normal text-center px-96">
-                        Aliens Tattoo ensures world-class artistry is always
-                        within your reach, demonstrating our commitment to you
-                        by bringing our tattoo studios closer to your world.
-                        Choose the nearest location and embrace the exceptional
-                        care and creativity waiting just around the corner.
+                        Our Tattoo ensures world-class artistry is always within
+                        your reach, demonstrating our commitment to you by
+                        bringing our tattoo studios closer to your world. Choose
+                        the nearest location and embrace the exceptional care
+                        and creativity waiting just around the corner.
                     </p>
                 </div>
                 <div className="flex mt-5 items-center justify-center">
@@ -642,11 +564,10 @@ export const Home = () => {
                             id="options"
                             name="options"
                             className="px-6 py-4 border border-solid border-black rounded-xl"
-                            onChange={handleLocationChange} // Call the function to handle location change
+                            value={location}
+                            onChange={handleLocationChange}
                         >
-                            <option value="" defaultValue>
-                                Select Your Location
-                            </option>
+                            <option value="none">Select Your Location</option>
                             <option value="mumbai">Mumbai</option>
                             <option value="delhi">Delhi</option>
                             <option value="bangalore">Bangalore</option>
@@ -658,19 +579,20 @@ export const Home = () => {
 
                 {/* Sidebar */}
                 {isSidebarOpen && (
-                    <div className="fixed top-0 right-0 w-[600px] h-full bg-white shadow-lg p-5">
-                        <div className="flex flex-row items-center justify-between">
-                            <h2 className="text-xl font-normal">
-                                Selected Location: {location}
-                            </h2>
+                    <div className="fixed top-0 right-0 w-[400px] h-full bg-white shadow-lg p-5">
+                        <div className="flex flex-row items-center justify-between border-b border-solid border-black pb-3">
+                            <h2 className="text-xl font-bold">Let's Connect</h2>
                             <button
-                                onClick={() => setIsSidebarOpen(false)}
-                                className="bg-gray-500 py-2 ml-2 px-2 rounded-full focus:outline-none hover:bg-gray-600"
+                                onClick={() => {
+                                    setIsSidebarOpen(false);
+                                    setLocation("none");
+                                }}
+                                className="bg-gray-500 p-2 rounded-full focus:outline-none hover:bg-gray-600"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="1em"
-                                    height="1em"
+                                    width="24"
+                                    height="24"
                                     viewBox="0 0 24 24"
                                 >
                                     <path
@@ -680,7 +602,69 @@ export const Home = () => {
                                 </svg>
                             </button>
                         </div>
-                        <p>Here is some information about {location}...</p>
+
+                        {/* Call to action buttons */}
+                        <div className="flex flex-col mt-5 items-center space-y-3">
+                            <div className="flex flex-row items-center justify-between">
+                                <button className="w-full bg-black text-white py-3 rounded-full flex items-center justify-center space-x-2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        className="w-5 h-5"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M15 7h.01M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"
+                                        />
+                                    </svg>
+                                    <span>Call Now</span>
+                                </button>
+
+                                <button className="w-full bg-black text-white py-3 rounded-full flex items-center justify-center space-x-2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="1.5em"
+                                        height="1.5em"
+                                        viewBox="0 0 512 512"
+                                        className="ml-3"
+                                    >
+                                        <path
+                                            fill="white"
+                                            d="M391 480c-19.52 0-46.94-7.06-88-30c-49.93-28-88.55-53.85-138.21-103.38C116.91 298.77 93.61 267.79 61 208.45c-36.84-67-30.56-102.12-23.54-117.13C45.82 73.38 58.16 62.65 74.11 52a176.3 176.3 0 0 1 28.64-15.2c1-.43 1.93-.84 2.76-1.21c4.95-2.23 12.45-5.6 21.95-2c6.34 2.38 12 7.25 20.86 16c18.17 17.92 43 57.83 52.16 77.43c6.15 13.21 10.22 21.93 10.23 31.71c0 11.45-5.76 20.28-12.75 29.81c-1.31 1.79-2.61 3.5-3.87 5.16c-7.61 10-9.28 12.89-8.18 18.05c2.23 10.37 18.86 41.24 46.19 68.51s57.31 42.85 67.72 45.07c5.38 1.15 8.33-.59 18.65-8.47c1.48-1.13 3-2.3 4.59-3.47c10.66-7.93 19.08-13.54 30.26-13.54h.06c9.73 0 18.06 4.22 31.86 11.18c18 9.08 59.11 33.59 77.14 51.78c8.77 8.84 13.66 14.48 16.05 20.81c3.6 9.53.21 17-2 22c-.37.83-.78 1.74-1.21 2.75a176.5 176.5 0 0 1-15.29 28.58c-10.63 15.9-21.4 28.21-39.38 36.58A67.4 67.4 0 0 1 391 480"
+                                        />
+                                    </svg>
+                                    <span>Schedule a Call</span>
+                                </button>
+                            </div>
+
+                            <button className="w-full bg-green-500 text-white py-3 rounded-full flex items-center justify-center space-x-2">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="1.5em"
+                                    height="1.5em"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        fill="white"
+                                        d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01m-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18l-3.12.82l.83-3.04l-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24c2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81c-.23-.08-.39-.12-.56.12c-.17.25-.64.81-.78.97c-.14.17-.29.19-.54.06c-.25-.12-1.05-.39-1.99-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.14-.25-.02-.38.11-.51c.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31c-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74c.59.26 1.05.41 1.41.52c.59.19 1.13.16 1.56.1c.48-.07 1.47-.6 1.67-1.18c.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28"
+                                    />
+                                </svg>
+                                <span>Connect on WhatsApp</span>
+                            </button>
+                        </div>
+
+                        {/* Image */}
+                        <div className="mt-5">
+                            <img
+                                src="https://images.unsplash.com/photo-1586243287039-23f4c8e2e7ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTk5fHxjYWxsJTIwdGF0dG9vfGVufDB8fDB8fHww"
+                                alt="Support Person"
+                                className="w-full h-[500px] rounded-lg"
+                            />
+                        </div>
                     </div>
                 )}
             </section>

@@ -29,8 +29,8 @@ export const CardSlider = ({ cardData }) => {
                 {/* Your left arrow SVG */}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="2.5em"
-                    height="2.5em"
+                    width="4em"
+                    height="4em"
                     viewBox="0 0 24 24"
                 >
                     <g fill="none" fillRule="evenodd">
@@ -61,10 +61,10 @@ export const CardSlider = ({ cardData }) => {
                         />
                         {card.textTrue && (
                             <div
-                                className={`absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-50 ${card.radius} p-3`}
+                                className={`absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-20 ${card.radius} p-3`}
                             >
                                 {/* Title at the bottom left */}
-                                <div className="text-white font-bold text-wrap text-xl">
+                                <div className="text-white underline font-bold text-wrap text-xl">
                                     {card.title}
                                 </div>
 
@@ -78,7 +78,7 @@ export const CardSlider = ({ cardData }) => {
                                     {card.button && (
                                         <Link
                                             to={card.button.link}
-                                            className="bg-white text-black rounded-md px-5 py-2"
+                                            className="bg-white text-black font-bold hover:font-semibold hover:text-white hover:bg-black duration-150 ease-in-out rounded-md px-4 py-2"
                                         >
                                             {card.button.text}
                                         </Link>
@@ -99,8 +99,8 @@ export const CardSlider = ({ cardData }) => {
                 {/* Your right arrow SVG */}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="2.5em"
-                    height="2.5em"
+                    width="4em"
+                    height="4em"
                     viewBox="0 0 24 24"
                 >
                     <g fill="none" fillRule="evenodd">

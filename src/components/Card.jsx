@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Card = ({
     title,
@@ -27,9 +28,9 @@ export const Card = ({
                         </h2>
                         <p className="leading-relaxed mt-10">{body}</p>
                         <div className="flex flex-row mt-10">
-                            <button
+                            <Link
                                 href={btnLink}
-                                className={`bg-black px-4 py-2 rounded-md text-white inline-flex items-center`}
+                                className={`bg-black hover:text-base text-sm hover:underline font-bold duration-300 ease-in-out px-4 py-2 rounded-md text-white inline-flex items-center`}
                             >
                                 Learn More
                                 <svg
@@ -44,11 +45,11 @@ export const Card = ({
                                     <path d="M5 12h14" />
                                     <path d="M12 5l7 7-7 7" />
                                 </svg>
-                            </button>
+                            </Link>
                             <div className="ml-2 flex items-start justify-center flex-col">
                                 <button
                                     href={whatsappLink}
-                                    className="flex flex-row items-center justify-center underline"
+                                    className="flex flex-row items-center justify-center underline hover:font-bold duration-150 ease-in-out hover:text-green-600"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +66,7 @@ export const Card = ({
                                 </button>
                                 <button
                                     href={callLink}
-                                    className="flex flex-row items-center justify-center underline"
+                                    className="flex flex-row items-center justify-center underline hover:font-bold duration-150 ease-in-out"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
